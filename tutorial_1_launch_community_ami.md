@@ -27,6 +27,6 @@ Authored by Audra Devoto
 
 ### Navigate to the Qiime AMI
 * Check you are in the N. Virginia Range
-![Edit security rules](../img/ec2-range.png)
+[Edit security rules](https://github.com/oddaud/img/ec2-range.png)
 * Navigate to the [EC2 management console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:)
 
