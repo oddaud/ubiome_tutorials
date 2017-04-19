@@ -103,4 +103,4 @@ ssh -i **/path/to/your/keyfile/**EDAMAME.pem ubuntu@"your public DNS"
 
 OK - now you're really ready.
 
-### NEXT: transfering files
+### [NEXT: transfering files](https://github.com/oddaud/ubiome_tutorials/blob/master/tutorial_2_transfer_files.md)
