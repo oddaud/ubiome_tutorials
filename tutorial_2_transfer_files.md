@@ -48,9 +48,68 @@ To begin, download the uBiome zipped fastq files to a directory named "ubiomeSam
 
 The uBiome files require a little bit of processing before they can be transfered to the qiime community server. 
 
-* Open the ubiomeSamples folder in finder, unzip each of the folders. Each folder should have a name starting with ssr
-* Within each folder, you will find 8 different fastq.gz files 
+* Navigate to the ubiomeSamples folder using the 'cd' command in the terminal. For example:
+``` 
+cd /Users/audradevoto/Documents/Haverford/Ubiome/ubiomeData
+```
+* Within the folder, you should see each of the sample folders in a .zip format. Unzip them, and remove the original .zips. 
+``` 
+unzip \*.zip
+rm *.zip
+```
+* Unzip the fastq.gz files. 
+```
+gunzip *.gz
+```
+You can open these fastq files with the command
+```less filename.fastq
+```
+You'll notice they are quite complicated, for an explaination of the fastq file format, [read here](https://en.wikipedia.org/wiki/FASTQ_format)
+
+You will notice there are eight fastq files for each sample. R1/R2 specifies whether or not the file has reverse reads or forward reads, and L001/L002/L003/L004 specifies what lane the sample was run on. Each sample was run four times in four different lanes, meaning L001-L004 should be very similar to each other and simply provide additional sequencing depth. We can concatenate the results from each lane to simplify analysis.
+* Concatenate data from each lane into one R1 file and one R2 file.
+```
+for F in *L001.fastq; do
+    cat ${F:0:8}*__R1__* > ${F:0:8}_R1_.fastq
+done
+
+for F in *L001.fastq; do
+    cat ${F:0:8}*__R2__* > ${F:0:8}_R2_.fastq
+done
+
+#No longer a need for single files
+rm *__L*
+```
+
+Great! You now have two, paired end reads for each sample, labelled ssr_xxxxx\_R1\_.fastq and ssr_xxxxx\_R2\_.fastq. 
+These reads are paired end, which means they are the same fragment of DNA sequenced from each end. For more information on how paired end reads are generated, see [this blog post](http://thegenomefactory.blogspot.com/2013/08/paired-end-read-confusion-library.html) or the official [Illumina video](https://www.youtube.com/watch?time_continue=45&v=fCd6B5HRaZ8) on how its sequencing technology works.
+
+uBiome sequences the V4 region of the 16S gene using universal V4 primers (515F: GTGCCAGCMGCCGCGGTAA and 806R:
+105 GGACTACHVGGGTWTCTAAT). There are numerous theories and justifications for sequencing different sections of the 16S gene, you can read about some of them [here](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-016-0992-y). 
+
+The V4 region is 254 bp generally, but may deviate by a few bp in some cases. If you examine the length of each read in either the R1 or R2 file, you will notice that they are each 150 bp long. With a little  math, you will notice then that each V4 region is covered completely by a read from either end, with an overlap of 46 bp in the middle. Next, we need to merge them together to get the full read from the V4 region. 
+
+But first, a little naming. It is generally better if you replace the uBiome sample name with your sample name. The must be a unique identifier, and should help you remember something about that sample. For example, I named by samples with their location (LG = longwood gardens), and a number. So LG001 was my first sample from longwood gardens. You may choose whatever naming convention you like, but keep it simple and easy to remember!
+
+* Rename all the .fastq files. You may do this my hand in finder, BE SURE to double and triple check that you are matching up the right uBiome sample name to your sample name. Example of new names shown below. BE SURE to maintain the \_R1\_ and \_R2\_. 
+![pic](pics/naming-scheme.png)
+
+Great! You are now ready to move these files over to the qiime community server and start your analysis. 
+#### WHERE I ENDED ####
+
+Open the ubiomeSamples folder in finder, unzip each of the folders. Each folder should have a name starting with ssr
+* Within each folder, you will find 8 different fastq.gz files. On a mac, it might look like this:
   * ssr\_87372\_R1\_L001.fastq
+![](pics/ubiome-folder-structure.png)
+
+You will notice there are eight fastq files for each sample. R1/R2 specifies whether or not the file has reverse reads or forward reads, and L001/L002/L003/L004 specifies what lane the sample was run on. Each sample was run four times in four different lanes, meaning L001-L004 should be very similar to each other and simply provide additional sequencing depth. We can concatenate the results from each lane to simplify analysis.
+
+* Go to your terminal, and navigate to the ubiomeSamples folder using the 'cd' command. For example:
+``` 
+cd /Users/audradevoto/Documents/Haverford/Ubiome/ubiomeData
+```
+
+* Concatenate data from each lane into one R1 file and one R2 file. This is done on the command line, in your terminal window. 
 
 
 
