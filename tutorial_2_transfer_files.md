@@ -62,7 +62,8 @@ rm *.zip
 gunzip *.gz
 ```
 You can open these fastq files with the command
-```less filename.fastq
+```
+less filename.fastq
 ```
 You'll notice they are quite complicated, for an explaination of the fastq file format, [read here](https://en.wikipedia.org/wiki/FASTQ_format)
 
