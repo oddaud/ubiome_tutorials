@@ -95,41 +95,97 @@ But first, a little naming. It is generally better if you replace the uBiome sam
 ![pic](pics/naming-scheme.png)
 
 Great! You are now ready to move these files over to the qiime community server and start your analysis. 
-#### WHERE I ENDED ####
 
-Open the ubiomeSamples folder in finder, unzip each of the folders. Each folder should have a name starting with ssr
-* Within each folder, you will find 8 different fastq.gz files. On a mac, it might look like this:
-  * ssr\_87372\_R1\_L001.fastq
-![](pics/ubiome-folder-structure.png)
+### 3. Transfer files to a community AMI
+## Where am I?
+Sometimes, all the terminal screens sort of look the same. When you're copying files back and forth, it's important know which machine you're talking to: your own laptop, or your EC2 instance in the cloud?
 
-You will notice there are eight fastq files for each sample. R1/R2 specifies whether or not the file has reverse reads or forward reads, and L001/L002/L003/L004 specifies what lane the sample was run on. Each sample was run four times in four different lanes, meaning L001-L004 should be very similar to each other and simply provide additional sequencing depth. We can concatenate the results from each lane to simplify analysis.
+* Keep your terminal window open where you have ssh into the EC2 machine.
+* Now, start another, new terminal window.
+NOTE This new window is NOT connected to the EC2. Instead it's just your regular ole laptop
+* Verify that your these windows are connected to different machines examining the home directory in both your ssh and new terminal
 
-* Go to your terminal, and navigate to the ubiomeSamples folder using the 'cd' command. For example:
-``` 
-cd /Users/audradevoto/Documents/Haverford/Ubiome/ubiomeData
+```pwd```
+See how they're different? One you've connected to EC2 (ubuntu), the other is just your local machine (whatever your user name is)
+
+You can also look at the address of the machine using the command
+```hostname```
+## Use ```scp``` to transfer files
+Next we will go over how to copy a file from your personal computer to your EC2 instance using ```scp```. The usage is very similar to ```ssh```.
+
+We are going to copy all the concatenated uBiome fastq files from your laptop onto the remote EC2 machine (qiime community AMI).
+
+Find your terminal window that's just your local machine (see above) and run the appropriate version of the command below. We add the ```-r``` option to recursively copy all files within the ubiomeData folder. 
+
+NOTE you have to adapt this command to give it the right paths and DNS info!
+
+```
+scp -r -i **/path/to/your/keyfile.pem** **path/to/ubiomeData/folder/** ubuntu@"your public DNS":**/path/where/to /copy/the/file**
 ```
 
-* Concatenate data from each lane into one R1 file and one R2 file. This is done on the command line, in your terminal window. 
+How do you know where you want to put the file?
 
-
-
-Organize it 
-Download the following file onto your laptop's Desktop by clicking [this link] (https://www.dropbox.com/s/9y41he4ol62gu0b/cloud.txt?dl=0)
-
-Now we're going to copy this file you downloaded from your laptop onto the remote EC2 machine.  
-
-Find your terminal window that's just your local machine (see above) and run the appropriate version 
-of the command below.  
-*NOTE* you have to adapt this command to give it the right paths and DNS info!
+* Look first at the directory structure on your EC2 machine
+* Type pwd once you've navigatated where you want to put this file!
+* put that path after the colon in the example above
+* An example from my file structure and EC2 instance!
 ```
-scp -i **/path/to/your/keyfile.pem** **path/to/the/file/you/want/to/copy** ubuntu@"your public DNS":**/path/where/to /copy/the/file**
+scp -i /Users/ewilbanks/Desktop/amazon.pem /Users/audradevoto/ubiomeData/ ubuntu@ec2-52-5-171-50.compute-1.amazonaws.com:
 ```
-How do you know where you want to put the file?  
-- Look first at the directory structure on your EC2 machine
-- Type `pwd` once you've navigatated where you want to put this file!
-- put that path after the colon in the example above
+* Now look on your EC2 machine, you should see the ubiomeData folder with all the fastq's in it (R1 and R2 for each sample). 
 
-An example from my file structure and EC2 instance!
+Great job! The rest of the tutorial will be done using an iPython notebook, but first we need to transfer the notebook to your EC2 instance. 
+
+### 4. Launch an iPython notebook
+
+First, we need to deal with a common problem of working with ssh instances: wifi interuptions. 
+
+What to do??
+
+```screen```! Screen allows processes to keep running on a remote computer even when your connection is interupted. 
+
+To launch screen:
+```screen```
+Then hit enter. No you are working from a screen.
+
+Launch iPython notebook. 
+```ipython notebook
 ```
-scp -i /Users/ewilbanks/Desktop/amazon.pem /Users/ewilbanks/Desktop/cloud.txt ubuntu@ec2-52-5-171-50.compute-1.amazonaws.com:/home/ubuntu/
+Now the iPython notebook is running! But notice you can't run other commands, that's fine, we just need to leave this screen. To detach the screen with iPython notebook running, simply press ```ctrl``` + ```a``` simultaneously. This tells the console to send commands to the screen. Then release ```ctrl``` + ```a``` and press ```d```. This detaches the screen, you should be back to a command prompt. 
+
+The screen is now running in the background, you can see it by typing
+```screen -ls
 ```
+If you want to resume a screen, you would type
+```screen -r
+```
+[Read up here](https://kb.iu.edu/d/acuy) for more cool things you an do with ```screen```
+
+Onto the iPython notebook!
+
+You just need to know your instance's public DNS address and the port you set up under the security rules (8888)
+
+* In your internet browser type in http://YOUR-EC2-DNS:8888
+* For my instance that looks like the address below
+* Note the colon between the DNS and the 8888 port
+
+``` http://ec2-204-236-222-237.compute-1.amazonaws.com:8888
+```
+
+The browser is now displaying the contents of your home directory. But there is nothing there yet. 
+
+## Adding the iPython notebook
+
+* From your EC2 terminal, use the ```wget``` command to download the iPython notebook.
+```wget https://raw.githubusercontent.com/oddaud/ubiome_tutorials/master/ubiome_tutorial.ipynb
+```
+* Go back to the internet browser running the iPython notebook
+* Refresh the page, you should see the notebook!
+
+[[INSERT A PIC HERE]]
+
+### 5: Work through the notebook tutorial
+
+* Click on the notebook
+* It might require a password, that password is ```qiime```
+* Work through the notebook!
