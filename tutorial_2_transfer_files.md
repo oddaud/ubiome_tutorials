@@ -177,7 +177,8 @@ The browser is now displaying the contents of your home directory. But there is 
 ## Adding the iPython notebook
 
 * From your EC2 terminal, use the ```wget``` command to download the iPython notebook.
-```wget https://raw.githubusercontent.com/oddaud/ubiome_tutorials/master/ubiome_tutorial.ipynb
+```
+wget https://raw.githubusercontent.com/oddaud/ubiome_tutorials/master/ubiome_tutorial.ipynb
 ```
 * Go back to the internet browser running the iPython notebook
 * Refresh the page, you should see the notebook!
