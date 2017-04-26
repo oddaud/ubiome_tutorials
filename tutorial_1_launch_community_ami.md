@@ -51,12 +51,19 @@ Later in the tutorial today, you'll want to use IPython Notebook on your instanc
   * the Source should be Anywhere
 ![](pics/qiime-ami-03.png)
 
+* Click 'Review and Launch' and then 'Launch'
+* You will be prompted to create a security key (or use an exisiting security key if you have already made one)
+* A security key is a unique file you save on your computer that acts as a password, this means only you can log into the EC2 instance you just created. 
+* Select "Create a new key pair', give it a name, and download it to a stable directory that is easy to find. 
+![](pics/create-key.png)
+
+
 ### Now log into your QIIME EC2 instance
 - On the EC2 console, look up the public DNS for your instance.
 - Open a terminal window (of Mobaxterm for Windows users) and `ssh` into your instance
 
 #### Find your EC2's Public DNS:
-Before you can connect to your EC2 instance you first need to find its Public DNS. This essentially acts as an address for your EC2 instance so that your local computer can access it. Go to [AWS](http://aws.amazon.com/), select EC2, and then view your running instances. On this page, click on your instance and find it's public DNS under the "Description" tab.
+Each EC2 instance has a Public DNS. This is an address for your EC2 instance that allows your local computer to access it. Go to [AWS](http://aws.amazon.com/), select EC2, and then view your running instances. On this page, click on your instance and find it's public DNS under the "Description" tab.
 
 ![PublicDNS](https://github.com/ewilbanks/2015-tutorials/blob/master/img/EC2_Public_DNS.png?raw=true)
 
@@ -67,20 +74,18 @@ In the image above the full Public DNS of the highlighted instance is **ec2-52-5
 - **MAC Users:** Terminal is under: Applications --> Utilities
 - **Linux Users:** Press Ctrl + Alt + t
 
-You will need to know the location of your **key pair** you created when you launched your instance.  Usually this will be in your "Downloads" folder, but you may want to move it elsewhere.
+Now is when you will need your **key pair** you created when you launched your instance. Find it's file path using the ```cd``` command. 
  
 ```
 cd /Downloads
 ```
-
-You will need to know what your Public DNS is for your EC2 Instance.
 
 #### 2. Change your keyfile permisions to read only:
 
 ```
 chmod 400 **/path/to/your/keyfile/**.pem
 ```
-This command will adjust the permissions on your keyfile so that it cannot be edited. This is important because if the keyfile is edited or changed, it will no longer allow access to the EC2 instance.
+This adjusts the permissions on your keyfile so that it cannot be edited. This is important because if the keyfile is edited or changed, it will no longer allow access to the EC2 instance.
 
 #### 3. Connecting to your EC2 instance using ssh:
 
@@ -88,7 +93,7 @@ This command will adjust the permissions on your keyfile so that it cannot be ed
 ssh -i **/path/to/your/keyfile/**eda.pem ubuntu@"your public DNS"
 ```
 
-On your first login, you may get a prompt stating that the host authenticity cannot be established, are you sure you want to continue?  Yes, you really do.
+On your first login, you may get a prompt stating that the host authenticity cannot be established, are you sure you want to continue?  Yes, you do
 
 SUCCESS! You have now logged into your computer in the cloud!
 
@@ -103,4 +108,4 @@ ssh -i **/path/to/your/keyfile/**EDAMAME.pem ubuntu@"your public DNS"
 
 OK - now you're really ready.
 
-### [NEXT: transfering files](https://github.com/oddaud/ubiome_tutorials/blob/master/tutorial_2_transfer_files.md)
+### [NEXT: transfering files and launching an iPython notebook](https://github.com/oddaud/ubiome_tutorials/blob/master/tutorial_2_transfer_files.md)
