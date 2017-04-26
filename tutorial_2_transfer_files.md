@@ -142,22 +142,29 @@ First, we need to deal with a common problem of working with ssh instances: wifi
 
 What to do??
 
-```screen```! Screen allows processes to keep running on a remote computer even when your connection is interupted. 
+```screen
+```
+Screen allows processes to keep running on a remote computer even when your connection is interupted. 
 
 To launch screen:
-```screen```
+```
+screen
+```
 Then hit enter. No you are working from a screen.
 
 Launch iPython notebook. 
-```ipython notebook
+```
+ipython notebook
 ```
 Now the iPython notebook is running! But notice you can't run other commands, that's fine, we just need to leave this screen. To detach the screen with iPython notebook running, simply press ```ctrl``` + ```a``` simultaneously. This tells the console to send commands to the screen. Then release ```ctrl``` + ```a``` and press ```d```. This detaches the screen, you should be back to a command prompt. 
 
 The screen is now running in the background, you can see it by typing
-```screen -ls
+```
+screen -ls
 ```
 If you want to resume a screen, you would type
-```screen -r
+```
+screen -r
 ```
 [Read up here](https://kb.iu.edu/d/acuy) for more cool things you an do with ```screen```
 
@@ -169,7 +176,8 @@ You just need to know your instance's public DNS address and the port you set up
 * For my instance that looks like the address below
 * Note the colon between the DNS and the 8888 port
 
-``` http://ec2-204-236-222-237.compute-1.amazonaws.com:8888
+``` 
+http://ec2-204-236-222-237.compute-1.amazonaws.com:8888
 ```
 
 The browser is now displaying the contents of your home directory. But there is nothing there yet. 
