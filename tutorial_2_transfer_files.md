@@ -201,4 +201,10 @@ wget https://gist.githubusercontent.com/ewilbanks/2a48b63c936ee528dd681d28999eb2
 * It might require a password, that password is ```qiime```
 * Work through the notebook!
 
+### 6: Begin qiime tutorial!
+* Navigate back to your home Jupyter screen
+* Click on the tutorial ubiome_tutorial.ipynb
+* Work through the tutorial!
+
+
 NEXT: [begin qiime tutorial]()
