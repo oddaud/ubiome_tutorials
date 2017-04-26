@@ -184,18 +184,21 @@ The password is *qiime*
 The browser is now displaying the contents of your home directory. But there is nothing there yet. 
 
 ## Adding the iPython notebook
-
-* From your EC2 terminal, use the ```wget``` command to download the iPython notebook.
+* We are going to download two notebooks, the first is an "introduction to iPython notebooks", the second will teach you how to work with your uBiome data. 
+* From your EC2 terminal, use the ```wget``` command to download the two iPython notebooks.
 ```
 wget https://raw.githubusercontent.com/oddaud/ubiome_tutorials/master/ubiome_tutorial.ipynb
+wget https://gist.githubusercontent.com/ewilbanks/2a48b63c936ee528dd681d28999eb205/raw/9b2055ad3726e87fb44a006583b5500bf2ff1ee9/notebook_introduction.ipynb
 ```
 * Go back to the internet browser running the iPython notebook
-* Refresh the page, you should see the notebook!
+* Refresh the page, you should see both!
 
 ![](pics/ipython.png)
 
 ### 5: Work through the notebook tutorial
 
-* Click on the notebook
+* Click on notebook notebook_introduction.ipynb
 * It might require a password, that password is ```qiime```
 * Work through the notebook!
+
+NEXT: [begin qiime tutorial]()
