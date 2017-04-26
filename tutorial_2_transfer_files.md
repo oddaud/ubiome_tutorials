@@ -192,7 +192,7 @@ wget https://raw.githubusercontent.com/oddaud/ubiome_tutorials/master/ubiome_tut
 * Go back to the internet browser running the iPython notebook
 * Refresh the page, you should see the notebook!
 
-[[INSERT A PIC HERE]]
+![](pics/ipython.png)
 
 ### 5: Work through the notebook tutorial
 
