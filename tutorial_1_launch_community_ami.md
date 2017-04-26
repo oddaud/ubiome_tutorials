@@ -16,12 +16,12 @@ Authored by Audra Devoto
 
 # Launching a community AMI
 
-** What is a community AMI? **
+## What is a community AMI?
 * A community AMI is a remote machine that comes pre-installed with necessary software.
 * Individuals or groups can set up and maintain these AMIs, and then make them available for use.
 * We will be using the Qiime AMI, which is maintained by the Qiime developers. 
 
-** What is Qiime? (pronounced chime) **
+## What is Qiime? (pronounced chime)
 * Qiime stands for Quantitative Insights Into Microbial Ecology. http://qiime.org/
 * From the website: "QIIME is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. QIIME is designed to take users from raw sequencing data generated on the Illumina or other platforms through publication quality graphics and statistics. This includes demultiplexing and quality filtering, OTU picking, taxonomic assignment, and phylogenetic reconstruction, and diversity analyses and visualizations. QIIME has been applied to studies based on billions of sequences from tens of thousands of samples."
 
@@ -36,7 +36,7 @@ Authored by Audra Devoto
 * Select the first one listed, qiime-191 - ami-1918ff72, by clicking "select"
 * You can find the most recent server [here](http://qiime.org/home_static/dataFiles.html) under "Latest Amazon Web Services (AWS) virtual machine identifier"
 ![Select qiime](pics/qiime-ami-01.png)
-* Select m1.large as the instance type for today 
+* Select m1.large as the instance type
 * Click through to review & launch  (but don't finalize launch yet)
 
 ### Set a new security rule for your instance 
