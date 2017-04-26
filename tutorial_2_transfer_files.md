@@ -180,7 +180,7 @@ You just need to know your instance's public DNS address and the port you set up
 ``` 
 http://ec2-204-236-222-237.compute-1.amazonaws.com:8888
 ```
-
+The password is *qiime*
 The browser is now displaying the contents of your home directory. But there is nothing there yet. 
 
 ## Adding the iPython notebook
