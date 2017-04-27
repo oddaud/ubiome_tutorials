@@ -79,10 +79,48 @@ Rank1 = domain, Rank2 = phylum, etc...
 * Filter out the chloroplasts and mitochondria
 
 ```
-expt <- subset_taxa(expt, Rank3!="c__Chloroplast") #gone
-expt <- subset_taxa(expt, Rank5!="f__mitochondria") #gone
+clst.expt <- subset_taxa(clst.expt, Rank3!="c__Chloroplast") #gone
+clst.expt <- subset_taxa(clst.expt, Rank5!="f__mitochondria") #gone
 ```
- * 
+* Tree of the 20 most common OTUs, colored by species
+```
+clst.expt.20 = prune_taxa(names(sort(taxa_sums(expt), TRUE)[1:20]), clst.expt)
+tree.plot.1 <- plot_tree(clst.expt.20, color="Species", size="abundance",
+                         label.tips="Rank6", text.size=3, ladderize="left")
+tree.plot.1 <- tree.plot.1 + theme(legend.position = "bottom",
+                                   legend.title = element_text(size=12),
+                                   legend.key = element_blank())
+tree.plot.1
+```
+![](pics/fig6.jpeg)
+* tree of the 100 most common OTUs, colored by location
+```
+clst.expt.100 = prune_taxa(names(sort(taxa_sums(clst.expt), TRUE)[1:100]), clst.expt)
+tree.plot.A <- plot_tree(clst.expt.100, color="Species", size = "abundance",text.size=3, 
+                         ladderize="left",nodelabf=nodeplotblank, sizebase = 1.5)
+tree.plot.A <- tree.plot.A + theme(legend.position = "bottom",
+                                   legend.title = element_text(size=12),
+                                   legend.key = element_blank()) + coord_polar(theta="y")
+tree.plot.A 
+```
+![](pics/fig7.jpeg)
+* Make a tree of Oxalobacterecea OTUs only
+```
+clst.oxo <- subset_taxa(clst.expt, Rank5=="f__Oxalobacteraceae")
+clst.oxo <- prune_samples(c("AB002","AB003","LG002","LG004",
+                            "LG010","LG008","LG011", "SD001", "AB004" ), clst.oxo)
+
+tree.plot.2 <- plot_tree(clst.oxo, color="Species", size = "abundance",
+                         nodelabf=nodeplotboot(size = 3), ladderize="left",
+                         label.tips = NA)
+tree.plot.2 <- tree.plot.2 + theme(legend.position = "bottom",
+                                   legend.title = element_text(size=16),
+                                   legend.key = element_blank(), legend.text = element_text(size = 13)) #+ coord_polar(theta="y")
+tree.plot.2 
+```
+![](pics/fig8.jpeg)
+
+
  ### USING RDP INPUT ###
 * Import as a phyloseq object
 ```
