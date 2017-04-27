@@ -207,4 +207,4 @@ wget https://gist.githubusercontent.com/ewilbanks/2a48b63c936ee528dd681d28999eb2
 * Work through the tutorial!
 
 
-NEXT: [begin qiime tutorial]()
+NEXT: [Begin RDP Analysis](https://github.com/oddaud/ubiome_tutorials/blob/master/tutorial_3_RDP.md)
