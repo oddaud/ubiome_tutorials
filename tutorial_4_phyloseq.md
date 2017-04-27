@@ -99,7 +99,7 @@ taxa.expt <- subset_taxa(taxa.expt, phylum!="Cyanobacteria/Chloroplast")
  taxa.p <- tax_glom(expt, taxrank="phylum")
  plot_bar(taxa.p, x="sampleID", fill="phylum")
 ```
-![](pics/fig1.png)
+![](pics/fig1.jpeg)
 * You can prune out certain samples with a low sequence count
 ```
 sample_sums(expt)
@@ -117,13 +117,13 @@ temp <- prune_taxa(keep, taxa.pruned)
 temp <-  tax_glom(temp, taxrank="phylum")
 plot_bar(temp, x="sampleID", fill="phylum")
 ```
-![](pics/fig2.png)
+![](pics/fig2.jpeg)
  * Seperate out just one family
  ```
 taxa.oxo <- subset_taxa(taxa.expt, family=="Oxalobacteraceae")
 plot_bar(taxa.pruned, x="sampleID", fill="genus")
  ```
-![](pics/fig3.png)
+![](pics/fig3.jpeg)
  * Rarefy data, calculate alpha diversity. May need to remove some samples with very low sequencing depth
  ```
 sample_sums(taxa.expt)
@@ -136,4 +136,4 @@ sample_sums(taxa.r) #Down to 5827 seq/samples
 p5 <- plot_richness(taxa.r, x="species", measures="Shannon", color = "location")
 p5 + theme(axis.text.x = element_text(size=10)) + geom_point(aes(size = 2))
 ```
-![](pics/fig4.png)
+![](pics/fig4.jpeg)
