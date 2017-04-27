@@ -70,7 +70,18 @@ sample_data() Sample Data:       [ 14 samples by 8 sample variables ]
 tax_table()   Taxonomy Table:    [ 18055 taxa by 7 taxonomic ranks ]
 phy_tree()    Phylogenetic Tree: [ 18055 tips and 18053 internal nodes ]
 ```
+* View the rank names
+```
+rank_names(clst.expt)
+```
+Rank1 = domain, Rank2 = phylum, etc...
 
+* Filter out the chloroplasts and mitochondria
+
+```
+expt <- subset_taxa(expt, Rank3!="c__Chloroplast") #gone
+expt <- subset_taxa(expt, Rank5!="f__mitochondria") #gone
+```
 
 
 
