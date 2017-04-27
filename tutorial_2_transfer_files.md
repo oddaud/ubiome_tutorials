@@ -1,7 +1,8 @@
 # File transfer
 ***
 Authored by Audra Devoto
-
+Adapted from [Lizzy Wilbanks for Swarthmore College BIOL133, Spring 2017](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-transferring-files.md), which was in turn adapted from a tutorial in EDAMAME: Explorations in Data Analysis for Metagenomic Advances in Microbial Ecology 2015
+[EDAMAME-2015 EC2-files tutorial](https://github.com/edamame-course/2015-tutorials/blob/master/final/2015-06-22-EC2_Connection_FileTransfer.md)
 ***
 
 ## Overarching Goal  
@@ -13,20 +14,19 @@ Authored by Audra Devoto
 
 ***
 
-### 0.  Where am I?  
-Sometimes, all the terminal screens sort of look the same. When you're copying files back and forth, it's important know which machine you're talking to:  your own laptop, or your EC2 instance in the cloud?
+### 0.  Which terminal am I in?
+It is important to keep track of which terminal you are on, your local computer, or the EC2 instance. 
 
 - Keep your terminal window open where you have `ssh` into the EC2 machine. 
 - Now, start another, new terminal window.  
- - **NOTE** This new window is *NOT* connected to the EC2.  Instead it's just your regular ole laptop
-- Verify that your these windows are connected to different machines examining the home directory in both your `ssh` and new terminal
+ - This new window is your local computer, NOT the EC2 instance. 
+- You can check this by looking at your 'present working directory' (pwd)
 
 ``` 
 pwd
 ```
-See how they're different? One you've connected to EC2 (ubuntu), the other is just your local machine (whatever your user name is)
 
-You can also look at the address of the machine using the command (Windows users, did this work?)
+You can also check the address of the computer using
 ```
 hostname
 ```
@@ -98,21 +98,8 @@ But first, a little naming. It is generally better if you replace the uBiome sam
 Great! You are now ready to move these files over to the qiime community server and start your analysis. 
 
 ### 3. Transfer files to a community AMI
-## Where am I?
-Sometimes, all the terminal screens sort of look the same. When you're copying files back and forth, it's important know which machine you're talking to: your own laptop, or your EC2 instance in the cloud?
 
-* Keep your terminal window open where you have ssh into the EC2 machine.
-* Now, start another, new terminal window.
-NOTE This new window is NOT connected to the EC2. Instead it's just your regular ole laptop
-* Verify that your these windows are connected to different machines examining the home directory in both your ssh and new terminal
-
-```pwd```
-See how they're different? One you've connected to EC2 (ubuntu), the other is just your local machine (whatever your user name is)
-
-You can also look at the address of the machine using the command
-```hostname```
 ## Use ```scp``` to transfer files
-Next we will go over how to copy a file from your personal computer to your EC2 instance using ```scp```. The usage is very similar to ```ssh```.
 
 We are going to copy all the concatenated uBiome fastq files from your laptop onto the remote EC2 machine (qiime community AMI).
 
@@ -124,15 +111,6 @@ NOTE you have to adapt this command to give it the right paths and DNS info!
 scp -r -i **/path/to/your/keyfile.pem** **path/to/ubiomeData/folder/** ubuntu@"your public DNS":**/path/where/to /copy/the/file**
 ```
 
-How do you know where you want to put the file?
-
-* Look first at the directory structure on your EC2 machine
-* Type pwd once you've navigatated where you want to put this file!
-* put that path after the colon in the example above
-* An example from my file structure and EC2 instance!
-```
-scp -i /Users/ewilbanks/Desktop/amazon.pem /Users/audradevoto/ubiomeData/ ubuntu@ec2-52-5-171-50.compute-1.amazonaws.com:
-```
 * Now look on your EC2 machine, you should see the ubiomeData folder with all the fastq's in it (R1 and R2 for each sample). 
 
 Great job! The rest of the tutorial will be done using an iPython notebook, but first we need to transfer the notebook to your EC2 instance. 
