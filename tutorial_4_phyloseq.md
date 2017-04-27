@@ -137,3 +137,11 @@ p5 <- plot_richness(taxa.r, x="species", measures="Shannon", color = "location")
 p5 + theme(axis.text.x = element_text(size=10)) + geom_point(aes(size = 2))
 ```
 ![](pics/fig4.jpeg)
+
+* Make a network based on different distance calculations
+```
+taxa.expt.200 = prune_taxa(names(sort(taxa_sums(taxa.expt), TRUE)[1:200]), taxa.expt)
+tg <- make_network(taxa.expt.200, "samples", "jaccard", 0.8, keep.isolates = TRUE)
+plot_network(tg, taxa.expt.200,line_weight = 0.4, label = NULL, color = "location")
+```
+![](pics/fig5.jpeg)
