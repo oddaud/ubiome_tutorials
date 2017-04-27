@@ -82,6 +82,58 @@ Rank1 = domain, Rank2 = phylum, etc...
 expt <- subset_taxa(expt, Rank3!="c__Chloroplast") #gone
 expt <- subset_taxa(expt, Rank5!="f__mitochondria") #gone
 ```
+ * 
+ ### USING RDP INPUT ###
+* Import as a phyloseq object
+```
+taxa.expt <- hier2phyloseq("path/to/RDP/output/all_hier.txt")
+#Add in metadata file
+sam.data <- read.csv(file="/path/to/sample.data.csv", row.names=1, header=TRUE)
+sample_data(taxa.expt) <- sam.data
+#Remove chloroplasts and some unnecessary samples
+get_taxa_unique(taxa.expt, taxonomic.rank="phylum")
+taxa.expt <- subset_taxa(taxa.expt, phylum!="Cyanobacteria/Chloroplast")
+ ```
+ * Plot by Phylum. This is confusing, so we should filter out the phyla with low abundance
+ ```
+ taxa.p <- tax_glom(expt, taxrank="phylum")
+ plot_bar(taxa.p, x="sampleID", fill="phylum")
+```
+![](pics/fig1.png)
+* You can prune out certain samples with a low sequence count
+```
+sample_sums(expt)
+taxa.pruned<- prune_samples(c("AB002.R1..merged","AB003.R1..merged","LG002.R1..merged","LG004.R1..merged",
+                              "LG010.R1..merged","PH002.R1..merged","PH001.R1..merged"), taxa.arch)
+```
+* Then remove phyla with < 1% abundance
+```
+otu <- otu_table(taxa.pruned)
+otu.pc <- prop.table(otu, margin = 2)*100
+keep <- apply(otu.pc, 1, max)>=1
+table(keep)
 
+temp <- prune_taxa(keep, taxa.pruned)
+temp <-  tax_glom(temp, taxrank="phylum")
+plot_bar(temp, x="sampleID", fill="phylum")
+```
+![](pics/fig2.png)
+ * Seperate out just one family
+ ```
+taxa.oxo <- subset_taxa(taxa.expt, family=="Oxalobacteraceae")
+plot_bar(taxa.pruned, x="sampleID", fill="genus")
+ ```
+![](pics/fig3.png)
+ * Rarefy data, calculate alpha diversity. May need to remove some samples with very low sequencing depth
+ ```
+sample_sums(taxa.expt)
+taxa.pruned<- prune_samples(c("AB002.R1..merged","AB003.R1..merged","LG002.R1..merged","LG004.R1..merged",
+                              "LG010.R1..merged","PH002.R1..merged","PH001.R1..merged","SK002.R1..merged",
+                              "SK003.R1..merged"), taxa.expt)
+taxa.r <- rarefy_even_depth(taxa.pruned, rngseed=TRUE)
+sample_sums(taxa.r) #Down to 5827 seq/samples
 
-
+p5 <- plot_richness(taxa.r, x="species", measures="Shannon", color = "location")
+p5 + theme(axis.text.x = element_text(size=10)) + geom_point(aes(size = 2))
+```
+![](pics/fig4.png)
