@@ -1,7 +1,8 @@
 # Introduction
 ***
 Authored by Audra Devoto
-
+[Adapted from ewilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md) for Swarthmore College BIOL133, Spring 2017
+All images from [ewilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md)
 ***
 
 ## Overarching Goal  
@@ -10,9 +11,21 @@ Authored by Audra Devoto
 ## Learning Objectives
 *	Understand what AWS is and how to use it
 * Launch the community qiime AMI
-*	Learn how to use the command line
+* Become familiar with the command line
+***
+
+## Command Line Tutorial
+* These tutorials make extensive use of the command line. While there is a steep learning curve to figuring out the "language" of the command line, you will quickly find that it is worth it! Some tasks that are impossible using a user interface are made simple with the command line. 
+* [Complete this excellent tutorial provided by Elizabeth Willbank](https://github.com/ewilbanks/2015-tutorials/blob/master/final/2015-06-22-introduction_to_the_shell.md)
+Citation:
+Authored by Tracy Teal with [Software Carpentry](http://software-carpentry.org/lessons.html), with minor modifications by Ashley Shade, Joshua Herr, and Paul Wilburn 
+[EDAMAME-2015 wiki](https://github.com/edamame-course/2015-tutorials/wiki)
 
 ***
+Software Carpentry has a CC-BY [license](https://github.com/swcarpentry/shell-novice/blob/gh-pages/LICENSE.md)   
+EDAMAME tutorials have a CC-BY [license](https://github.com/edamame-course/2015-tutorials/blob/master/LICENSE.md).   
+_Share, adapt, and attribute please!_   
+
 
 # Launching a community AMI
 
@@ -26,19 +39,19 @@ Authored by Audra Devoto
 * From the website: "QIIME is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. QIIME is designed to take users from raw sequencing data generated on the Illumina or other platforms through publication quality graphics and statistics. This includes demultiplexing and quality filtering, OTU picking, taxonomic assignment, and phylogenetic reconstruction, and diversity analyses and visualizations. QIIME has been applied to studies based on billions of sequences from tens of thousands of samples."
 
 ### Navigate to the Qiime AMI
-** [Adapted from ewilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md)
+[Adapted from ewilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md)
 
-* Be sure you are in the N. Virginia range
+* Double check you are in the N. Virginia range
 ![Edit security rules](pics/ec2-range.png)
-* Navigate to the [EC2 management console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:)
-* Click on launch an instance
-* At the left click on the sidebar that says "Community AMI"
-* Search for "qiime" to pull up machines that match that.
-* Select the first one listed, qiime-191 - ami-1918ff72, by clicking "select"
-* You can find the most recent server [here](http://qiime.org/home_static/dataFiles.html) under "Latest Amazon Web Services (AWS) virtual machine identifier"
+* Go to [EC2 management console](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:)
+* Click 'launch and instance'
+* Click on the sidebar that says "Community AMI"
+* Search for "qiime" to pull up machines the qiime community AMI
+* Select the first one listed, qiime-191 - ami-1918ff72
+* If you are curious what the most recent server is, click [here](http://qiime.org/home_static/dataFiles.html) under "Latest Amazon Web Services (AWS) virtual machine identifier"
 ![Select qiime](pics/qiime-ami-01.png)
-* Select m1.large as the instance type
-* Click through to review & launch  (but don't finalize)
+* For the instance type, select m1.large
+* Click through to review & launch (but don't finalize)
 
 ### Set a new security rule for your instance 
 Loging on to the EC2 isntance requires the ssh access to port 22, but we also need another port to use iPython notebooks (later in the tutorial).
@@ -47,9 +60,9 @@ Loging on to the EC2 isntance requires the ssh access to port 22, but we also ne
 * Click `Add rule`
 * For the new secturity rule fill out the fields as shown below
 * The Type should be Custom TCP Rule
-  * the Protocol should be TCP
-  * the Port Range should be 8888
-  * the Source should be Anywhere
+  * Protocol =  TCP
+  * Port Range = 8888
+  * Source = Anywhere
 ![](pics/qiime-ami-03.png)
 
 * Click 'Review and Launch' and then 'Launch'
