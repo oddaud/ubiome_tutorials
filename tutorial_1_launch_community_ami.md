@@ -1,7 +1,8 @@
 # Introduction
 ***
 Authored by Audra Devoto
-[Adapted from ewilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md) for Swarthmore College BIOL133, Spring 2017
+
+[Adapted from Elizabeth Wilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md) for Swarthmore College BIOL133, Spring 2017
 All images from [ewilbanks](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-launch-community-ami.md)
 ***
 
