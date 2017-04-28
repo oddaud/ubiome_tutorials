@@ -1,7 +1,8 @@
 # File transfer
 ***
 Authored by Audra Devoto
-Adapted from [Lizzy Wilbanks for Swarthmore College BIOL133, Spring 2017](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-transferring-files.md), which was in turn adapted from a tutorial in EDAMAME: Explorations in Data Analysis for Metagenomic Advances in Microbial Ecology 2015
+
+Adapted from [Elizabteth Wilbanks for Swarthmore College BIOL133, Spring 2017](https://github.com/ewilbanks/micdiv2017/blob/master/tutorials/2017-02-16-transferring-files.md), which was in turn adapted from a tutorial in EDAMAME: Explorations in Data Analysis for Metagenomic Advances in Microbial Ecology 2015
 [EDAMAME-2015 EC2-files tutorial](https://github.com/edamame-course/2015-tutorials/blob/master/final/2015-06-22-EC2_Connection_FileTransfer.md)
 ***
 
